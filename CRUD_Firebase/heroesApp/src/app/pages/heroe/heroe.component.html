@@ -12,31 +12,32 @@
 
 <div class="row animated fadeIn faster">
     <div class="col">
-        <form action="">
+        <form (ngSubmit)="sendHeroe(form)" #form="ngForm">
             <div class="form-group">
                 <label for="">Firebase ID</label>
-                <input type="text" class="form-control" disabled="disabled">
+
+                <input type="text" class="form-control" disabled="disabled" [(ngModel)]="heroe.id" name="id">
                 <small class="form-text text-muted">Autogenerate field</small>
             </div>
             <div class="form-group">
-                <label for="">Name</label>
-                <input type="text" class="form-control" placeholder="Heroe's name">
+                <label for="">Name</label> ng
+                <input type="text" class="form-control" placeholder="Heroe's name" [(ngModel)]="heroe.name" name="name" required>
 
             </div>
             <div class="form-group">
                 <label for="">Power</label>
 
-                <input type="text" class="form-control" placeholder="Heroe's power">
+                <input type="text" class="form-control" placeholder="Heroe's power" [(ngModel)]="heroe.power" name="power">
             </div>
             <div class="form-group">
                 <label for="">State</label>
                 <br>
-                <button class="btn btn-outline-success w-50" type="button">
+                <button *ngIf="heroe.alive" (click)="heroe.alive=false" class="btn btn-outline-success w-50" type="button">
                     <i class="fa fa-smile-wink">
                         Alive
                     </i>
                 </button>
-                <button class="btn btn-outline-danger w-50" type="button">
+                <button *ngIf="!heroe.alive" (click)="heroe.alive=true" class="btn btn-outline-danger w-50" type="button">
                     <i class="fa fa-smile-wink">
                         Dead
                     </i>
